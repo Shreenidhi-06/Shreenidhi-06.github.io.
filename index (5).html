@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EDIT-ME ZONE #1 — YOUR INFO
+     Change the values below. Everything on the page pulls from here.
+     ============================================================ */
+</style>
+</head>
+<body>
+
+<script>
+/* ============================================================
+   ★ EDIT THIS SECTION — YOUR INFO GOES HERE ★
+   Just replace the text inside the quotes. Don't touch anything
+   below the "STOP EDITING" line unless you're comfortable with code.
+   ============================================================ */
+
+const PROFILE = {
+  name: "Shreenidhi Hegde",
+  role: "Aspiring Python Full-Stack Developer & UI/UX Enthusiast",
+  taglineWords: ["build web apps.", "write clean code.", "design good UI/UX.", "solve problems."],
+  bio: "I'm Nidhi, a Computer Science Engineering student in my 4th year, passionate about web development, programming, and learning new technologies. I enjoy building projects, solving problems, and continuously improving my skills.",
+  location: "Udupi, Karnataka, India",
+  github: "https://github.com/Shreenidhi-06",
+  linkedin: "https://www.linkedin.com/in/nidhi-hegde-ab0a472b2",
+  email: "nidhi@41505@gmail.com",
+  resumeUrl: "https://drive.google.com/file/d/1NOifiPs7SN8X-5RdYOt_tWVFNoIeXPEi/view?usp=drivesdk"
+};
+
+// Add as many projects as you want. Copy/paste a block to add more.
+const PROJECTS = [
+  {
+    name: "book-recommendation-system",
+    description: "A book recommendation system designed for beginner readers, suggesting titles to help them find their next read.",
+    tech: ["Python"],
+    stars: 0,
+    forks: 0,
+    url: "https://github.com/Shreenidhi-06",
+    demo: ""
+  },
+  {
+    name: "coding-battle-arena",
+    description: "A competitive coding platform where users can solve problems and battle it out in real time.",
+    tech: ["Python", "HTML", "CSS", "React"],
+    stars: 0,
+    forks: 0,
+    url: "https://github.com/Shreenidhi-06",
+    demo: ""
+  }
+];
+
+// Skill categories — edit freely
+const SKILLS = {
+  "languages": ["Python", "Java"],
+  "frontend": ["HTML", "CSS", "React"],
+  "interests": ["Web Development", "UI/UX Design"]
+};
+
+/* ============================================================
+   ★ STOP EDITING — the rest just renders the page ★
+   ============================================================ */
+</script>
+
+<style>
+  :root{
+    --bg: #1a1b26;
+    --bg-surface: #1f2131;
+    --bg-elevated: #262837;
+    --border: #34374a;
+    --text: #c0caf5;
+    --text-dim: #565f89;
+    --text-bright: #e8ecfc;
+    --purple: #bb9af7;
+    --green: #9ece6a;
+    --blue: #7aa2f7;
+    --orange: #ff9e64;
+    --red: #f7768e;
+    --cyan: #7dcfff;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--purple);color:var(--bg);}
+
+  /* ---------- Top chrome bar ---------- */
+  .titlebar{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;
+    background:var(--bg-elevated);
+    border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:100;
+  }
+  .dot{width:11px;height:11px;border-radius:50%;}
+  .dot.red{background:#f7768e;}
+  .dot.yellow{background:#e0af68;}
+  .dot.green{background:#9ece6a;}
+  .titlebar-label{
+    margin-left:12px;font-family:var(--mono);font-size:12.5px;color:var(--text-dim);
+  }
+  .titlebar-label b{color:var(--text);}
+
+  /* ---------- Layout ---------- */
+  .app{display:flex;min-height:calc(100vh - 41px);}
+  .sidebar{
+    width:230px;flex-shrink:0;
+    background:var(--bg-surface);
+    border-right:1px solid var(--border);
+    padding:18px 0;
+    position:sticky;top:41px;height:calc(100vh - 41px);
+    overflow-y:auto;
+  }
+  .sidebar-heading{
+    font-family:var(--mono);font-size:11px;letter-spacing:1.5px;
+    color:var(--text-dim);text-transform:uppercase;
+    padding:0 18px 10px;
+  }
+  .file-item{
+    display:flex;align-items:center;gap:8px;
+    padding:7px 18px;font-family:var(--mono);font-size:13.5px;
+    color:var(--text-dim);cursor:pointer;
+    border-left:2px solid transparent;
+    transition:background .12s, color .12s;
+    text-decoration:none;
+  }
+  .file-item:hover{background:var(--bg-elevated);color:var(--text);}
+  .file-item.active{
+    background:var(--bg-elevated);color:var(--text-bright);
+    border-left:2px solid var(--purple);
+  }
+  .file-icon{width:8px;text-align:center;}
+  .icon-md{color:var(--blue);}
+  .icon-js{color:var(--orange);}
+  .icon-json{color:var(--green);}
+  .icon-txt{color:var(--text-dim);}
+
+  .sidebar-footer{
+    margin-top:24px;padding:14px 18px 0;
+    border-top:1px solid var(--border);
+  }
+  .social-row{display:flex;gap:14px;margin-top:10px;}
+  .social-row a{color:var(--text-dim);transition:color .15s;}
+  .social-row a:hover{color:var(--purple);}
+  .social-row svg{width:18px;height:18px;}
+
+  .main{flex:1;min-width:0;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:90px 48px 70px;
+    border-bottom:1px solid var(--border);
+    background:
+      radial-gradient(ellipse 700px 300px at 15% 0%, rgba(187,154,247,.08), transparent 60%);
+  }
+  .prompt-line{
+    font-family:var(--mono);color:var(--green);font-size:14px;margin-bottom:18px;
+  }
+  .prompt-line .cmd{color:var(--text);}
+  .hero h1{
+    font-family:var(--mono);font-weight:800;
+    font-size:clamp(32px,5vw,58px);
+    color:var(--text-bright);
+    line-height:1.15;
+  }
+  .hero h1 .accent{color:var(--purple);}
+  .type-line{
+    font-family:var(--mono);font-size:clamp(16px,2vw,22px);
+    color:var(--cyan);margin-top:14px;min-height:1.4em;
+  }
+  .type-line .cursor{
+    display:inline-block;width:9px;height:1.1em;background:var(--cyan);
+    vertical-align:text-bottom;margin-left:2px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .hero p.bio{
+    max-width:620px;margin-top:22px;font-size:15.5px;line-height:1.7;color:var(--text);
+  }
+  .hero-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:13px;padding:10px 18px;
+    border-radius:6px;text-decoration:none;font-weight:500;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .12s, box-shadow .12s;
+    border:1px solid var(--border);
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--purple);color:var(--bg);border-color:var(--purple);}
+  .btn-primary:hover{box-shadow:0 6px 20px rgba(187,154,247,.35);}
+  .btn-ghost{color:var(--text);background:var(--bg-elevated);}
+  .btn-ghost:hover{border-color:var(--text-dim);}
+
+  /* ---------- Sections ---------- */
+  .section{padding:64px 48px;border-bottom:1px solid var(--border);}
+  .section-head{
+    display:flex;align-items:baseline;gap:10px;margin-bottom:32px;
+    font-family:var(--mono);
+  }
+  .section-head .tag{color:var(--text-dim);font-size:13px;}
+  .section-head h2{font-size:22px;color:var(--text-bright);font-weight:700;}
+  .section-head h2 .brace{color:var(--purple);}
+
+  /* Projects as commit-log style cards */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+  .project-card{
+    background:var(--bg-surface);border:1px solid var(--border);
+    border-radius:8px;padding:20px;
+    transition:border-color .15s, transform .15s;
+  }
+  .project-card:hover{border-color:var(--purple);transform:translateY(-3px);}
+  .project-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .project-name{font-family:var(--mono);font-weight:700;color:var(--blue);font-size:15px;}
+  .project-stats{display:flex;gap:12px;font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+  .project-desc{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px;min-height:44px;}
+  .tech-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+  .tech-pill{
+    font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:20px;
+    background:var(--bg-elevated);color:var(--green);border:1px solid var(--border);
+  }
+  .project-links{display:flex;gap:14px;}
+  .project-links a{
+    font-family:var(--mono);font-size:12px;color:var(--text-dim);
+    text-decoration:none;display:inline-flex;align-items:center;gap:5px;
+  }
+  .project-links a:hover{color:var(--purple);}
+
+  /* Skills as JSON block */
+  .json-block{
+    background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;
+    padding:24px 28px;font-family:var(--mono);font-size:13.5px;line-height:1.9;
+    overflow-x:auto;
+  }
+  .json-key{color:var(--cyan);}
+  .json-punc{color:var(--text-dim);}
+  .json-str{color:var(--green);}
+  .indent{padding-left:24px;}
+
+  /* Contact */
+  .contact-block{
+    background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;
+    padding:30px;max-width:560px;
+  }
+  .contact-row{
+    display:flex;align-items:center;gap:12px;padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:14px;
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .label{color:var(--text-dim);width:90px;flex-shrink:0;}
+  .contact-row a{color:var(--text);text-decoration:none;}
+  .contact-row a:hover{color:var(--purple);}
+
+  footer{
+    padding:28px 48px;text-align:center;
+    font-family:var(--mono);font-size:12px;color:var(--text-dim);
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 800px){
+    .app{flex-direction:column;}
+    .sidebar{
+      width:100%;height:auto;position:sticky;top:41px;
+      display:flex;overflow-x:auto;padding:10px 0;border-right:none;border-bottom:1px solid var(--border);
+    }
+    .sidebar-heading, .sidebar-footer{display:none;}
+    .file-item{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;}
+    .file-item.active{border-left:none;border-bottom:2px solid var(--purple);}
+    .hero, .section{padding:44px 22px;}
+  }
+
+  [tabindex]:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--purple);outline-offset:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+
+<div class="titlebar">
+  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+  <span class="titlebar-label"><b id="tb-name">portfolio</b> — ~/dev</span>
+</div>
+
+<div class="app">
+  <nav class="sidebar">
+    <div class="sidebar-heading">Explorer</div>
+    <a class="file-item active" href="#about"><span class="file-icon icon-md">◆</span> about.md</a>
+    <a class="file-item" href="#projects"><span class="file-icon icon-js">◆</span> projects.js</a>
+    <a class="file-item" href="#skills"><span class="file-icon icon-json">◆</span> skills.json</a>
+    <a class="file-item" href="#contact"><span class="file-icon icon-txt">◆</span> contact.txt</a>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-heading" style="padding-left:0;">Connect</div>
+      <div class="social-row">
+        <a id="sb-github" href="#" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a id="sb-linkedin" href="#" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 110-4.13 2.07 2.07 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a id="sb-email" href="#" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <section class="hero" id="about">
+      <div class="prompt-line">visitor@portfolio:~$ <span class="cmd">whoami</span></div>
+      <h1 id="hero-name">Your Name</h1>
+      <div class="type-line"><span id="type-target"></span><span class="cursor"></span></div>
+      <p class="bio" id="hero-bio">Bio loading...</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" id="cta-resume" href="#" target="_blank">↓ Download Resume</a>
+        <a class="btn btn-ghost" href="#projects">View Projects →</a>
+        <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head"><span class="tag">01 /</span><h2><span class="brace">{</span> Projects <span class="brace">}</span></h2></div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head"><span class="tag">02 /</span><h2><span class="brace">{</span> Skills <span class="brace">}</span></h2></div>
+      <div class="json-block" id="skills-json"></div>
+    </section>
+
+    <section class="section" id="contact" style="border-bottom:none;">
+      <div class="section-head"><span class="tag">03 /</span><h2><span class="brace">{</span> Contact <span class="brace">}</span></h2></div>
+      <div class="contact-block">
+        <div class="contact-row"><span class="label">email</span><a id="c-email" href="#">you@example.com</a></div>
+        <div class="contact-row"><span class="label">github</span><a id="c-github" href="#" target="_blank">github.com/you</a></div>
+        <div class="contact-row"><span class="label">linkedin</span><a id="c-linkedin" href="#" target="_blank">linkedin.com/in/you</a></div>
+        <div class="contact-row"><span class="label">location</span><span id="c-location">—</span></div>
+      </div>
+    </section>
+
+    <footer id="footer-text">Built with HTML &amp; CSS. Hosted on GitHub Pages.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  // ---- Fill in profile data ----
+  document.getElementById('tb-name').textContent = PROFILE.name.toLowerCase().replace(/\s+/g,'-') + '-portfolio';
+  document.getElementById('hero-name').innerHTML = 'Hi, I\'m <span class="accent">' + PROFILE.name + '</span>.';
+  document.getElementById('hero-bio').textContent = PROFILE.bio;
+  document.getElementById('cta-resume').href = PROFILE.resumeUrl;
+  document.getElementById('sb-github').href = PROFILE.github;
+  document.getElementById('sb-linkedin').href = PROFILE.linkedin;
+  document.getElementById('sb-email').href = 'mailto:' + PROFILE.email;
+  document.getElementById('c-email').textContent = PROFILE.email;
+  document.getElementById('c-email').href = 'mailto:' + PROFILE.email;
+  document.getElementById('c-github').textContent = PROFILE.github.replace('https://','');
+  document.getElementById('c-github').href = PROFILE.github;
+  document.getElementById('c-linkedin').textContent = PROFILE.linkedin.replace('https://','');
+  document.getElementById('c-linkedin').href = PROFILE.linkedin;
+  document.getElementById('c-location').textContent = PROFILE.location;
+
+  // ---- Typing animation ----
+  const words = PROFILE.taglineWords && PROFILE.taglineWords.length ? PROFILE.taglineWords : ["build things."];
+  const el = document.getElementById('type-target');
+  let wi = 0, ci = 0, deleting = false;
+  function tick(){
+    const word = words[wi];
+    if(!deleting){
+      ci++;
+      el.textContent = word.slice(0, ci);
+      if(ci === word.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      ci--;
+      el.textContent = word.slice(0, ci);
+      if(ci === 0){ deleting = false; wi = (wi+1) % words.length; }
+    }
+    setTimeout(tick, deleting ? 40 : 80);
+  }
+  tick();
+
+  // ---- Render projects ----
+  const grid = document.getElementById('projects-grid');
+  grid.innerHTML = PROJECTS.map(p => `
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-name">${p.name}</span>
+        <span class="project-stats">
+          <span>★ ${p.stars}</span><span>⑂ ${p.forks}</span>
+        </span>
+      </div>
+      <div class="project-desc">${p.description}</div>
+      <div class="tech-row">
+        ${p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('')}
+      </div>
+      <div class="project-links">
+        <a href="${p.url}" target="_blank">↗ Repository</a>
+        ${p.demo ? `<a href="${p.demo}" target="_blank">↗ Live Demo</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+
+  // ---- Render skills as JSON ----
+  const skillsEl = document.getElementById('skills-json');
+  let out = '<span class="json-punc">{</span><br>';
+  const keys = Object.keys(SKILLS);
+  keys.forEach((key, i) => {
+    out += `<div class="indent"><span class="json-key">"${key}"</span><span class="json-punc">: [</span>`;
+    out += SKILLS[key].map(s => `<span class="json-str">"${s}"</span>`).join('<span class="json-punc">, </span>');
+    out += `<span class="json-punc">]${i < keys.length-1 ? ',' : ''}</span></div>`;
+  });
+  out += '<span class="json-punc">}</span>';
+  skillsEl.innerHTML = out;
+
+  // ---- Active nav highlighting ----
+  const sections = ['about','projects','skills','contact'].map(id => document.getElementById(id));
+  const links = document.querySelectorAll('.file-item');
+  window.addEventListener('scroll', () => {
+    let current = sections[0].id;
+    sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) current = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+current));
+  });
+
+  document.title = PROFILE.name + " — Portfolio";
+})();
+</script>
+</body>
+</html>
